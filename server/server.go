@@ -6,6 +6,7 @@ import (
 	"net"
 
 	pb "github.com/shudipta/grpc-booklist/booklist"
+	"github.com/shudipta/grpc-booklist/reverse-proxy"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -44,6 +45,8 @@ func main() {
 	pb.RegisterBookListServer(s, &server{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
+	// Run reverse proxy in another goroutine
+	go reverse_proxy.Run()
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
