@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/shudipta/grpc-hello-server/booklist"
+	pb "github.com/shudipta/grpc-booklist/booklist"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

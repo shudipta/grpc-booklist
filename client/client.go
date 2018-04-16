@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/shudipta/grpc-hello-server/booklist"
+	pb "github.com/shudipta/grpc-booklist/booklist"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
