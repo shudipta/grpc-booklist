@@ -1,0 +1,12 @@
+package: github.com/shudipta/grpc-hello-server
+import:
+- package: github.com/golang/protobuf
+  subpackages:
+  - proto
+- package: github.com/the-redback/go-oneliners
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: google.golang.org/grpc
+  subpackages:
+  - reflection

@@ -1,7 +1,0 @@
-syntax = "proto3"
-
-message Book {
-    required int32 id = 1;
-    required string name = 2;
-    required string author = 3;
-}

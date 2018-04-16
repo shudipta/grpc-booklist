@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package booklist;
+
+service BookList {
+    rpc Add(Book) returns (AddReply) {}
+    rpc List(ListRequest) returns (ListReply) {}
+}
+
+message Book {
+    int32 id = 1;
+    string name = 2;
+    string author = 3;
+}
+
+message AddReply {
+    string message = 1;
+}
+
+message ListRequest {
+
+}
+message ListReply {
+    repeated Book books = 1;
+}
