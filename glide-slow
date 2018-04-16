@@ -5,7 +5,7 @@
 # - ???
 # - Profit
 
-pushd $GOPATH/src/github.com/shudipta/grpc-hello-server
+pushd $GOPATH/src/github.com/shudipta/grpc-booklist
 
 glide up -v
 glide vc --only-code --no-tests

@@ -1,10 +1,18 @@
 syntax = "proto3";
-
 package booklist;
 
+import "google/api/annotations.proto";
+
 service BookList {
-    rpc Add(Book) returns (AddReply) {}
-    rpc List(ListRequest) returns (ListReply) {}
+    rpc Add(Book) returns (AddReply) {
+        option (google.api.http) = {
+          post: "/add"
+          body: "*"
+        };
+    }
+    rpc List(ListRequest) returns (ListReply) {
+        option (google.api.http).get = "/list";
+    }
 }
 
 message Book {

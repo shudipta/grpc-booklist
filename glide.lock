@@ -1,14 +1,25 @@
-hash: 71276fa1bbb1c52551cd8ae00e284fb0e4901370bdcb8309441df363bb8afab1
-updated: 2018-04-16T13:49:41.881930339+06:00
+hash: ae3f64313e34d77bb67f7865bc596397d437553a56c5eb52538845d796682cf7
+updated: 2018-04-16T17:04:14.126419385+06:00
 imports:
+- name: github.com/golang/glog
+  version: 44145f04b68cf362d9c4df2182967c2275eaefed
 - name: github.com/golang/protobuf
-  version: 1643683e1b54a9e88ad26d98f81400c8c9d9f4f9
+  version: 925541529c1fa6821df4e44ce2723319eb2be768
   subpackages:
+  - jsonpb
   - proto
   - protoc-gen-go/descriptor
+  - ptypes
   - ptypes/any
-- name: github.com/the-redback/go-oneliners
-  version: 82a97ec58df4809a2bc57ebbbcc1e6a2feb78111
+  - ptypes/duration
+  - ptypes/struct
+  - ptypes/timestamp
+- name: github.com/grpc-ecosystem/grpc-gateway
+  version: 07f5e79768022f9a3265235f0db4ac8c3f675fec
+  subpackages:
+  - runtime
+  - runtime/internal
+  - utilities
 - name: golang.org/x/net
   version: 1c05540f6879653db88113bc4a2b70aec4bd491f
   subpackages:
@@ -29,13 +40,20 @@ imports:
 - name: google.golang.org/genproto
   version: 09f6ed296fc66555a25fe4ce95173148778dfa85
   subpackages:
+  - googleapis/api/annotations
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: d2e1b51f33ff8c5e4a15560ff049d200e83726c5
+  version: d11072e7ca9811b1100b80ca0269ac831f06d024
   subpackages:
+  - balancer
+  - balancer/base
+  - balancer/roundrobin
   - codes
+  - connectivity
   - credentials
-  - grpclb/grpc_lb_v1
+  - encoding
+  - encoding/proto
+  - grpclb/grpc_lb_v1/messages
   - grpclog
   - internal
   - keepalive
@@ -44,6 +62,9 @@ imports:
   - peer
   - reflection
   - reflection/grpc_reflection_v1alpha
+  - resolver
+  - resolver/dns
+  - resolver/passthrough
   - stats
   - status
   - tap
