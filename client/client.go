@@ -1,20 +1,25 @@
 package main
 
 import (
+	"crypto/tls"
+	"crypto/x509"
+	"io/ioutil"
 	"log"
 	"time"
 
 	pb "github.com/shudipta/grpc-booklist/booklist"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 )
 
 const (
 	address = "localhost:10000"
+	// address = "192.168.99.100:30010"
 )
 
 func add(c pb.BookListClient, book *pb.Book) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	r, err := c.Add(ctx, book)
 	if err != nil {
@@ -34,8 +39,32 @@ func list(c pb.BookListClient) {
 }
 
 func main() {
+	certificate, err := tls.LoadX509KeyPair(
+		"certs/client@abc.com.crt",
+		"certs/client@abc.com.key",
+	)
+
+	certPool := x509.NewCertPool()
+	pemCACert, err := ioutil.ReadFile("certs/ca.crt")
+	if err != nil {
+		log.Fatalf("failed to read ca cert: %s", err)
+	}
+
+	ok := certPool.AppendCertsFromPEM(pemCACert)
+	if !ok {
+		log.Fatal("failed to append certs")
+	}
+
+	transportCreds := credentials.NewTLS(&tls.Config{
+		// ServerName:   "example.com",
+		Certificates: []tls.Certificate{certificate},
+		RootCAs:      certPool,
+	})
+
+	dialOption := grpc.WithTransportCredentials(transportCreds)
+
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure())
+	conn, err := grpc.Dial(address, dialOption)
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

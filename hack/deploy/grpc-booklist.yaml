@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-booklist
+  labels:
+    app: grpc
+spec:
+  type: NodePort
+  ports:
+  - name: port-0
+    port: 80
+    targetPort: 8080
+    nodePort: 30080
+  - name: port-1
+    port: 10
+    targetPort: 10000
+    nodePort: 30010
+  selector:
+    app: grpc
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: grpc-booklist
+  labels:
+    app: grpc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grpc
+    spec:
+      containers:
+      - name: grpc-booklist
+        image: shudipta/grpc-booklist:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 10000
+        imagePullPolicy: Always
