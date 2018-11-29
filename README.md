@@ -13,7 +13,7 @@ protoc -I/usr/local/include -I. \
 
 ### Try it out
 
-To compile and run the server, assuming we are in the folder $GOPATH/src/<path_to_repo_root>, simply:
+To compile and run the server, assuming we are in the folder `$GOPATH/src/<path_to_repo_root>`, simply:
 
 ```console
 go run server/server.go
