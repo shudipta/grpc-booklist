@@ -40,8 +40,8 @@ func list(c pb.BookListClient) {
 
 func main() {
 	certificate, err := tls.LoadX509KeyPair(
-		"certs/client@abc.com.crt",
-		"certs/client@abc.com.key",
+		"certs/client.crt",
+		"certs/client.key",
 	)
 
 	certPool := x509.NewCertPool()
