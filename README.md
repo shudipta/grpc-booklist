@@ -22,7 +22,7 @@ go run server/server.go
 Likewise, to run the client:
 
 ```console
-go run server/server.go
+go run client/client.go
 ```
 
 To call RESTful api:
